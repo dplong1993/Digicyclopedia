@@ -10,8 +10,8 @@ function App() {
     <BrowserRouter>
         <nav>
             <ul>
-                <li><NavLink to="/" activeClass="active">Home</NavLink></li>
-                <li><NavLink to="/users" activeClass="active">Users</NavLink></li>
+                <li><NavLink to="/" activeclass="active">Home</NavLink></li>
+                <li><NavLink to="/users" activeclass="active">Users</NavLink></li>
             </ul>
         </nav>
         <Switch>
