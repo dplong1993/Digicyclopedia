@@ -11,8 +11,7 @@ from flask_login import (
 )
 
 from starter_app.models import db, User
-from starter_app.api.user_routes import user_routes
-from starter_app.api.auth_routes import auth_routes
+from starter_app.api import user_routes
 
 from starter_app.config import Config
 
