@@ -60,7 +60,7 @@ function App() {
     }, []);
 
 
-    if(!loading){
+    if(loading){
         return null;
     }
 
@@ -73,7 +73,7 @@ function App() {
                     <ul>
                         <li><NavLink to="/" activeclass="active">Home</NavLink></li>
                         <li><NavLink to="/login" activeclass="active">Login</NavLink></li>
-                        <li><a onClick={logoutUser} href="#" activeclass="active">Logout</a></li>
+                        <li><a onClick={logoutUser} href="/login" activeclass="active">Logout</a></li>
                         <li><NavLink to="/users" activeclass="active">Users</NavLink></li>
                     </ul>
                 </nav>
