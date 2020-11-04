@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
+import { Switch, NavLink, useLocation } from 'react-router-dom';
 
 import UserList from './components/UsersList';
 import LoginForm from './components/LoginForm';
 import UserForm from './components/UserForm';
+import Digimon from './components/Digimon';
 import AuthContext from './auth'
 
 import { ProtectedRoute, AuthRoute } from './Routes';
@@ -12,6 +13,7 @@ function App() {
     const [fetchWithCSRF, setFetchWithCSRF] = useState(() => fetch);
     const [currentUserId, setCurrentUserId] = useState(null);
     const [loading, setLoading] = useState(true);
+    let location = useLocation();
 
     const authContextValue = {
         fetchWithCSRF,
@@ -50,7 +52,6 @@ function App() {
                     }
                 });
                 if(authData.current_user_id){
-                    console.log(authData)
                     setCurrentUserId(authData.current_user_id)
                 }
             }
@@ -66,26 +67,39 @@ function App() {
 
     return (
         <AuthContext.Provider value={authContextValue}>
-            {loading && <div>Loading...</div>}
-            {!loading &&
-            <BrowserRouter>
-                <nav>
-                    <ul>
-                        <li><NavLink to="/" activeclass="active">Home</NavLink></li>
-                        <li><NavLink to="/login" activeclass="active">Login</NavLink></li>
-                        <li><a onClick={logoutUser} href="/login" activeclass="active">Logout</a></li>
-                        <li><NavLink to="/users" activeclass="active">Users</NavLink></li>
-                    </ul>
-                </nav>
-                <Switch>
-                    <ProtectedRoute path="/users" exact={true} component={UserList} currentUserId={currentUserId} />
-                    <ProtectedRoute path="/users/:id/edit" component={UserForm} currentUserId={currentUserId} />
-                    <AuthRoute path="/login" component={LoginForm} />
-                    <Route path="/">
-                        <h1>My Home Page</h1>
-                    </Route>
-                </Switch>
-            </BrowserRouter>}
+            {location.pathname !== '/login' ? (
+            <nav>
+                <ul>
+                    <li><NavLink to="/" activeclass="active">Home</NavLink></li>
+                    <li><NavLink to="/login" activeclass="active">Login</NavLink></li>
+                    <li><a onClick={logoutUser} href="/login" activeclass="active">Logout</a></li>
+                    <li><NavLink to="/users" activeclass="active">Users</NavLink></li>
+                </ul>
+            </nav>) : null}
+            <Switch>
+                <ProtectedRoute
+                    path="/users"
+                    exact={true}
+                    component={UserList}
+                    currentUserId={currentUserId}
+                />
+                <ProtectedRoute
+                    path="/users/:id/edit"
+                    component={UserForm}
+                    currentUserId={currentUserId}
+                />
+                <AuthRoute
+                    path="/login"
+                    component={LoginForm}
+                    currentUserId={currentUserId}
+                />
+                <ProtectedRoute
+                    path="/"
+                    exact={true}
+                    component={Digimon}
+                    currentUserId={currentUserId}
+                />
+            </Switch>
         </AuthContext.Provider>
     );
 }
