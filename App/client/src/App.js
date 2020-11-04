@@ -59,30 +59,35 @@ function App() {
         restoreCSRF();
     }, []);
 
-  return (
-    <AuthContext.Provider value={authContextValue}>
-        {loading && <div>Loading...</div>}
-        {!loading &&
-        <BrowserRouter>
-            <nav>
-                <ul>
-                    <li><NavLink to="/" activeclass="active">Home</NavLink></li>
-                    <li><NavLink to="/login" activeclass="active">Login</NavLink></li>
-                    <li><a onClick={logoutUser} href="#" activeclass="active">Logout</a></li>
-                    <li><NavLink to="/users" activeclass="active">Users</NavLink></li>
-                </ul>
-            </nav>
-            <Switch>
-                <ProtectedRoute path="/users" exact={true} component={UserList} currentUserId={currentUserId} />
-                <ProtectedRoute path="/users/:id/edit" component={UserForm} currentUserId={currentUserId} />
-                <AuthRoute path="/login" component={LoginForm} />
-                <Route path="/">
-                    <h1>My Home Page</h1>
-                </Route>
-            </Switch>
-        </BrowserRouter>}
-    </AuthContext.Provider>
-  );
+
+    if(!loading){
+        return null;
+    }
+
+    return (
+        <AuthContext.Provider value={authContextValue}>
+            {loading && <div>Loading...</div>}
+            {!loading &&
+            <BrowserRouter>
+                <nav>
+                    <ul>
+                        <li><NavLink to="/" activeclass="active">Home</NavLink></li>
+                        <li><NavLink to="/login" activeclass="active">Login</NavLink></li>
+                        <li><a onClick={logoutUser} href="#" activeclass="active">Logout</a></li>
+                        <li><NavLink to="/users" activeclass="active">Users</NavLink></li>
+                    </ul>
+                </nav>
+                <Switch>
+                    <ProtectedRoute path="/users" exact={true} component={UserList} currentUserId={currentUserId} />
+                    <ProtectedRoute path="/users/:id/edit" component={UserForm} currentUserId={currentUserId} />
+                    <AuthRoute path="/login" component={LoginForm} />
+                    <Route path="/">
+                        <h1>My Home Page</h1>
+                    </Route>
+                </Switch>
+            </BrowserRouter>}
+        </AuthContext.Provider>
+    );
 }
 
 export default App;
