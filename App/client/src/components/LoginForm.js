@@ -69,32 +69,41 @@ function LoginForm(props) {
 
     const [errors, setErrors] = useState([]);
     const { fetchWithCSRF, setCurrentUserId } = useContext(AuthContext);
+
+    async function loginUser(username, password) {
+        const response = await fetchWithCSRF(`/login`, {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            credentials: 'include',
+            body: JSON.stringify({
+                username,
+                password
+            })
+        });
+
+        const responseData = await response.json();
+        if (!response.ok) {
+            setErrors(responseData.errors);
+        } else {
+            setCurrentUserId(responseData.current_user_id)
+            history.push('/')
+        }
+    }
+
     const submitForm = (e) => {
         e.preventDefault();
-
-        async function loginUser() {
-            const response = await fetchWithCSRF(`/login`, {
-                method: 'POST',
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                credentials: 'include',
-                body: JSON.stringify({
-                    username,
-                    password
-                })
-            });
-
-            const responseData = await response.json();
-            if (!response.ok) {
-                setErrors(responseData.errors);
-            } else {
-                setCurrentUserId(responseData.current_user_id)
-                history.push('/')
-            }
-        }
-        loginUser();
+        e.stopPropagation();
+        loginUser(username, password);
     }
+
+    const handleDemoLogin = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        loginUser("Ian", "password");
+    }
+
     return (
         <LoginFormWrapper>
             <h1>Login</h1>
@@ -123,7 +132,11 @@ function LoginForm(props) {
                 />
                 <div className="buttons">
                     <button className="formButton">Login</button>
-                    <button className="formButton">Signup</button>
+                    <button onClick={() => history.push('/signup')} className="formButton">Signup</button>
+                    <button
+                        className="formButton"
+                        onClick={handleDemoLogin}
+                    >Demo Login</button>
                 </div>
             </form>
         </LoginFormWrapper>

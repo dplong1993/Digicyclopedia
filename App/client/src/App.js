@@ -1,11 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import { Switch, NavLink, useLocation } from 'react-router-dom';
+import { Switch, useLocation } from 'react-router-dom';
 
 import UserList from './components/UsersList';
 import LoginForm from './components/LoginForm';
+import SignupForm from './components/SignupForm';
 import UserForm from './components/UserForm';
 import Digimon from './components/Digimon';
 import AuthContext from './auth'
+import Navbar from './components/NavBar'
 
 import { ProtectedRoute, AuthRoute } from './Routes';
 
@@ -20,16 +22,6 @@ function App() {
         currentUserId,
         setCurrentUserId
     };
-
-    const logoutUser = async ()=> {
-            const response = await fetchWithCSRF('/logout', {
-                method: 'POST',
-                credentials: 'include'
-            });
-            if(response.ok){
-                setCurrentUserId(null)
-            }
-    }
 
     useEffect(() => {
         async function restoreCSRF() {
@@ -67,14 +59,9 @@ function App() {
 
     return (
         <AuthContext.Provider value={authContextValue}>
-            {location.pathname !== '/login' ? (
+            {location.pathname !== '/login' && location.pathname !== '/signup' ? (
             <nav>
-                <ul>
-                    <li><NavLink to="/" activeclass="active">Home</NavLink></li>
-                    <li><NavLink to="/login" activeclass="active">Login</NavLink></li>
-                    <li><a onClick={logoutUser} href="/login" activeclass="active">Logout</a></li>
-                    <li><NavLink to="/users" activeclass="active">Users</NavLink></li>
-                </ul>
+                <Navbar />
             </nav>) : null}
             <Switch>
                 <ProtectedRoute
@@ -93,8 +80,13 @@ function App() {
                     component={LoginForm}
                     currentUserId={currentUserId}
                 />
+                <AuthRoute
+                    path="/signup"
+                    component={SignupForm}
+                    currentUserId={currentUserId}
+                />
                 <ProtectedRoute
-                    path="/"
+                    path="/digimon"
                     exact={true}
                     component={Digimon}
                     currentUserId={currentUserId}
