@@ -53,6 +53,7 @@ function Digimon(){
     'Mega'
   ]
   const [digimon, setDigimon] = useState([]);
+  const [currentLevel, setCurrentLevel] = useState(['baby']);
 
   const digimonContextValue = {
     levels,
@@ -60,27 +61,30 @@ function Digimon(){
     setDigimon
   }
 
+  const handleClick = (e) => {
+    e.preventDefault();
+    setCurrentLevel(e.target.innerText.toLowerCase());
+  }
+
   useEffect(() => {
     async function fetchDigimon() {
-      const response = await fetch('/api/digimon/baby/');
+      const response = await fetch(`/api/digimon/${currentLevel}/`);
       const responseData = await response.json();
       setDigimon(responseData.digimon);
     }
 
     fetchDigimon();
-  }, []);
+  }, [currentLevel]);
 
   if(!digimon){
     return null;
   }
 
-  console.log(digimon);
-
   return (
     <DigimonWrapper>
       <DigimonContext.Provider value={digimonContextValue}>
         <div className="navButtons">
-          {levels.map(level => <NavBttn text={level}/>)}
+          {levels.map(level => <NavBttn text={level} handleClick={handleClick}/>)}
           <input className="search"/>
           <button className="navButton">Submit</button>
         </div>

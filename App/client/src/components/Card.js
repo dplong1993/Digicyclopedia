@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 
 const CardWrapper = styled.div`
@@ -18,6 +19,8 @@ const CardWrapper = styled.div`
 `;
 
 function Card(props) {
+  let history = useHistory();
+
   if(!props.digimon){
     return null
   }
@@ -25,6 +28,7 @@ function Card(props) {
   const handleClick = (e) => {
     e.preventDefault();
     console.log(props.digimon.name);
+    history.push(`/digimon/${props.digimon.name.toLowerCase()}`);
   }
 
   return (

@@ -7,6 +7,7 @@ const NavBttnWrapper = styled.div`
   .button {
     width: 100%;
     margin: 0 0 0 0;
+    cursor: pointer;
   }
 `;
 
@@ -14,7 +15,7 @@ function NavBttn(props) {
 
   return (
     <NavBttnWrapper>
-      <button className="button">{props.text}</button>
+      <button className="button" onClick={props.handleClick}>{props.text}</button>
     </NavBttnWrapper>
   )
 }
