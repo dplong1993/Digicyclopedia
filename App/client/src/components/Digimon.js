@@ -13,6 +13,7 @@ const DigimonWrapper = styled.div`
     width: 90%;
     padding-top: 10px;
     margin: 0 auto 0 auto;
+    display: flex;
   }
 
   .navButton {

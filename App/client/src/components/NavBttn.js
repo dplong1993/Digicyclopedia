@@ -2,8 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 
 const NavBttnWrapper = styled.div`
-  .navButton {
-    width: 11%;
+  width: 11%;
+
+  .button {
+    width: 100%;
     margin: 0 0 0 0;
   }
 `;
@@ -11,9 +13,9 @@ const NavBttnWrapper = styled.div`
 function NavBttn(props) {
 
   return (
-    <>
-      <button className="navButton">{props.text}</button>
-    </>
+    <NavBttnWrapper>
+      <button className="button">{props.text}</button>
+    </NavBttnWrapper>
   )
 }
 
