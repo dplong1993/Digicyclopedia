@@ -11,6 +11,41 @@ def index():
     response = Digimon.query.all()
     return {"digimon": [digimon.to_dict() for digimon in response]}
 
+@digimon_routes.route('/baby/')
+@login_required
+def fetchBaby():
+    response = Digimon.query.filter(Digimon.level == 'Baby').all()
+    return {"digimon": [digimon.to_dict() for digimon in response]}
+
+@digimon_routes.route('/in-training/')
+@login_required
+def fetchBaby():
+    response = Digimon.query.filter(Digimon.level == 'In-Training').all()
+    return {"digimon": [digimon.to_dict() for digimon in response]}
+
+@digimon_routes.route('/rookie/')
+@login_required
+def fetchBaby():
+    response = Digimon.query.filter(Digimon.level == 'Rookie').all()
+    return {"digimon": [digimon.to_dict() for digimon in response]}
+
+@digimon_routes.route('/champion/')
+@login_required
+def fetchBaby():
+    response = Digimon.query.filter(Digimon.level == 'Champion').all()
+    return {"digimon": [digimon.to_dict() for digimon in response]}
+
+@digimon_routes.route('/ultimate/')
+@login_required
+def fetchBaby():
+    response = Digimon.query.filter(Digimon.level == 'Ultimate').all()
+    return {"digimon": [digimon.to_dict() for digimon in response]}
+
+@digimon_routes.route('/mega/')
+@login_required
+def fetchBaby():
+    response = Digimon.query.filter(Digimon.level == 'Mega').all()
+    return {"digimon": [digimon.to_dict() for digimon in response]}
 
 # @user_routes.route('/<int:id>', methods=['GET', 'POST'])
 # def user_detail(id):

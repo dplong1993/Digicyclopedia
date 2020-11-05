@@ -54,7 +54,7 @@ function Digimon(){
 
   useEffect(() => {
     async function fetchDigimon() {
-      const response = await fetch('/api/digimon/');
+      const response = await fetch('/api/digimon/baby/');
       const responseData = await response.json();
       setDigimon(responseData.digimon);
     }
