@@ -16,6 +16,6 @@ class Digimon(db.Model):
       "name": self.name,
       "level": self.level,
       "previous_form": self.previous_form,
-      "next_form": self.next_form
+      "next_form": self.next_form,
       "bio": self.bio
     }

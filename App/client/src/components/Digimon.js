@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import NavBttn from './NavBttn';
 import Row from './Row';
@@ -50,6 +50,23 @@ function Digimon(){
     'Ultimate',
     'Mega'
   ]
+  const [digimon, setDigimon] = useState([]);
+
+  useEffect(() => {
+    async function fetchDigimon() {
+      const response = await fetch('/api/digimon/');
+      const responseData = await response.json();
+      setDigimon(responseData.digimon);
+    }
+
+    fetchDigimon();
+  }, []);
+
+  if(!digimon){
+    return null;
+  }
+
+  console.log(digimon);
 
   return (
     <DigimonWrapper>
