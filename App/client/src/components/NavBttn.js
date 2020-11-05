@@ -4,10 +4,20 @@ import styled from 'styled-components';
 const NavBttnWrapper = styled.div`
   width: 11%;
 
+  .activeButton{
+    width: 100%;
+    margin: 0 0 0 0;
+    cursor: pointer;
+    background-color: #064b88;
+    color: #fc6701;
+  }
+
   .button {
     width: 100%;
     margin: 0 0 0 0;
     cursor: pointer;
+    color: #fc6701;
+    background-color: #fecc3d;
   }
 `;
 
@@ -15,7 +25,9 @@ function NavBttn(props) {
 
   return (
     <NavBttnWrapper>
-      <button className="button" onClick={props.handleClick}>{props.text}</button>
+      {props.text.toLowerCase() === props.currentLevel ?
+      <button className="activeButton" onClick={props.handleClick}>{props.text}</button>:
+      <button className="button" onClick={props.handleClick}>{props.text}</button>}
     </NavBttnWrapper>
   )
 }

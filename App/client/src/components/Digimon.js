@@ -53,7 +53,7 @@ function Digimon(){
     'Mega'
   ]
   const [digimon, setDigimon] = useState([]);
-  const [currentLevel, setCurrentLevel] = useState(['baby']);
+  const [currentLevel, setCurrentLevel] = useState('baby');
 
   const digimonContextValue = {
     levels,
@@ -84,7 +84,7 @@ function Digimon(){
     <DigimonWrapper>
       <DigimonContext.Provider value={digimonContextValue}>
         <div className="navButtons">
-          {levels.map(level => <NavBttn text={level} handleClick={handleClick}/>)}
+          {levels.map(level => <NavBttn text={level} handleClick={handleClick} currentLevel={currentLevel}/>)}
           <input className="search"/>
           <button className="navButton">Submit</button>
         </div>
