@@ -1,10 +1,6 @@
-from flask_jwt_extended import create_access_token, get_jwt_identity
+from . import db
 from flask_login import UserMixin
-from flask_sqlalchemy import SQLAlchemy
 from werkzeug.security import generate_password_hash, check_password_hash
-
-db = SQLAlchemy()
-
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
