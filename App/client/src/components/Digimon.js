@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import styled from 'styled-components';
 import NavBttn from './NavBttn';
 import Row from './Row';
+import DigimonContext from '../digimon';
 
 const DigimonWrapper = styled.div`
   width: 75%;
@@ -53,6 +54,12 @@ function Digimon(){
   ]
   const [digimon, setDigimon] = useState([]);
 
+  const digimonContextValue = {
+    levels,
+    digimon,
+    setDigimon
+  }
+
   useEffect(() => {
     async function fetchDigimon() {
       const response = await fetch('/api/digimon/baby/');
@@ -71,19 +78,21 @@ function Digimon(){
 
   return (
     <DigimonWrapper>
-      <div className="navButtons">
-        {levels.map(level => <NavBttn text={level}/>)}
-        <input className="search"/>
-        <button className="navButton">Submit</button>
-      </div>
-      <div className="container">
-        <Row />
-        <Row />
-        <div className="pageButtons">
-          <button className="pageButton">Back</button>
-          <button>Next</button>
+      <DigimonContext.Provider value={digimonContextValue}>
+        <div className="navButtons">
+          {levels.map(level => <NavBttn text={level}/>)}
+          <input className="search"/>
+          <button className="navButton">Submit</button>
         </div>
-      </div>
+        <div className="container">
+          <Row startVal={0}/>
+          <Row startVal={4}/>
+          <div className="pageButtons">
+            <button className="pageButton">Back</button>
+            <button>Next</button>
+          </div>
+        </div>
+      </DigimonContext.Provider>
     </DigimonWrapper>
   )
 }

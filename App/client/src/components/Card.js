@@ -8,14 +8,29 @@ const CardWrapper = styled.div`
   height 90%;
   border-radius: 30px;
   border: 1px solid #fecc3d;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+
+  .name {
+    align-self: flex-end;
+  }
 `;
 
 function Card(props) {
+  if(!props.digimon){
+    return null
+  }
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    console.log(props.digimon.name);
+  }
 
   return (
-    <CardWrapper>
+    <CardWrapper onClick={handleClick}>
       <img src={props.photoUrl} alt={props.photoAlt}/>
-      <div>{props.name}</div>
+      <div className="name">{props.digimon.name}</div>
     </CardWrapper>
   )
 }

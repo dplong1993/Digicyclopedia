@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import styled from 'styled-components';
+import DigimonContext from '../digimon';
 import Card from './Card';
 
 const RowWrapper = styled.div`
@@ -10,13 +11,14 @@ const RowWrapper = styled.div`
 `;
 
 function Row(props) {
+  const {digimon} = useContext(DigimonContext);
 
   return (
     <RowWrapper>
-      <Card />
-      <Card />
-      <Card />
-      <Card />
+      <Card digimon={digimon[props.startVal]}/>
+      <Card digimon={digimon[props.startVal + 1]}/>
+      <Card digimon={digimon[props.startVal + 2]}/>
+      <Card digimon={digimon[props.startVal + 3]}/>
     </RowWrapper>
   )
 }
