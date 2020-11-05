@@ -9,3 +9,13 @@ class Digimon(db.Model):
   previous_form = db.Column(db.ARRAY(db.String(50)))
   next_form = db.Column(db.ARRAY(db.String(50)))
   bio = db.Column(db.Text, nullable=False)
+
+  def to_dict(self):
+    return {
+      "id": self.id,
+      "name": self.name,
+      "level": self.level,
+      "previous_form": self.previous_form,
+      "next_form": self.next_form
+      "bio": self.bio
+    }

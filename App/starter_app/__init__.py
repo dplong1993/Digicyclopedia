@@ -9,15 +9,14 @@ from flask_login import (
     logout_user,
     login_required
 )
-
-from starter_app.models import db, User
-from starter_app.api import user_routes
-
+from starter_app.models import db, User, Digimon
+from starter_app.api import user_routes, digimon_routes
 from starter_app.config import Config
 
 app = Flask(__name__)
 app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
+app.register_blueprint(digimon_routes, url_prefix='/api/digimon')
 db.init_app(app)
 login_manager = LoginManager(app)
 
