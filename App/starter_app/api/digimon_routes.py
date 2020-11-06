@@ -53,17 +53,3 @@ def fetchMega():
 def fetchDigimonByName(name):
     response = Digimon.query.filter(Digimon.name == name).one()
     return {"data": [response.to_dict()]}
-
-# @user_routes.route('/<int:id>', methods=['GET', 'POST'])
-# def user_detail(id):
-#     return {}
-
-
-# @user_routes.route('/', methods=["POST"])
-# def createUser():
-#     username, email, password = request.json.values()
-#     user = User(username=username, email=email, password=password)
-#     db.session.add(user)
-#     db.session.commit()
-#     login_user(user)
-#     return {"current_user_id": current_user.id}
