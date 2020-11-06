@@ -54,6 +54,7 @@ function Digimon(){
   ]
   const [digimon, setDigimon] = useState([]);
   const [currentLevel, setCurrentLevel] = useState('baby');
+  const [counter, setCounter] = useState(0);
 
   const digimonContextValue = {
     levels,
@@ -64,6 +65,21 @@ function Digimon(){
   const handleClick = (e) => {
     e.preventDefault();
     setCurrentLevel(e.target.innerText.toLowerCase());
+    setCounter(0);
+  }
+
+  const handleBackClick = (e) => {
+    e.preventDefault();
+    if(counter > 0){
+      setCounter(counter-8);
+    }
+  }
+
+  const handleNextClick = (e) => {
+    e.preventDefault();
+    if(digimon && counter < digimon.length){
+      setCounter(counter+8);
+    }
   }
 
   useEffect(() => {
@@ -89,11 +105,11 @@ function Digimon(){
           <button className="navButton">Submit</button>
         </div>
         <div className="container">
-          <Row startVal={0}/>
-          <Row startVal={4}/>
+          <Row startVal={counter}/>
+          <Row startVal={counter+4}/>
           <div className="pageButtons">
-            <button className="pageButton">Back</button>
-            <button>Next</button>
+            {counter === 0 ? <div></div> : <button onClick={handleBackClick} className="pageButton">Back</button>}
+            {counter + 8 >= digimon.length ? <div></div>: <button onClick={handleNextClick}>Next</button>}
           </div>
         </div>
       </DigimonContext.Provider>
