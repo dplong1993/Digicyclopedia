@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 
 const CardWrapper = styled.div`
@@ -10,16 +10,23 @@ const CardWrapper = styled.div`
   border-radius: 30px;
   border: 1px solid #fecc3d;
   display: flex;
-  justify-content: center;
   cursor: pointer;
+  flex-direction: column;
+  justify-content: center;
 
   .name {
-    align-self: flex-end;
+    align-self: center;
+  }
+
+  .img {
+    align-self: center;
+    width: 175px;
+    height: 220px;
   }
 `;
 
 function Card(props) {
-  let history = useHistory();
+  // let history = useHistory();
 
   if(!props.digimon){
     return null
@@ -28,12 +35,18 @@ function Card(props) {
   const handleClick = (e) => {
     e.preventDefault();
     console.log(props.digimon.name);
-    history.push(`/digimon/${props.digimon.name.toLowerCase()}`);
+    return <Redirect
+      to = {{
+        pathname: `/digimon/${props.digimon.name.toLowerCase()}`,
+        state: {digimon: props.digimon}
+      }}
+    />
+    // history.push(`/digimon/${props.digimon.id}`);
   }
 
   return (
     <CardWrapper onClick={handleClick}>
-      <img src={props.photoUrl} alt={props.photoAlt}/>
+      <img className="img" src="https://digicyclopedia.s3.us-east-2.amazonaws.com/Argomon_(Fresh)_b.jpg" alt="Argomon(Baby)"/>
       <div className="name">{props.digimon.name}</div>
     </CardWrapper>
   )
