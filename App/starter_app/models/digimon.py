@@ -9,6 +9,7 @@ class Digimon(db.Model):
   previous_form = db.Column(db.ARRAY(db.String(50)))
   next_form = db.Column(db.ARRAY(db.String(50)))
   bio = db.Column(db.Text, nullable=False)
+  photo_url = db.Column(db.String, nullable=False)
 
   def to_dict(self):
     return {
@@ -17,5 +18,6 @@ class Digimon(db.Model):
       "level": self.level,
       "previous_form": self.previous_form,
       "next_form": self.next_form,
-      "bio": self.bio
+      "bio": self.bio,
+      "photo_url": self.photo_url
     }
