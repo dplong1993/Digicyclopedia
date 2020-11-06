@@ -55,6 +55,8 @@ function Digimon(){
   const [digimon, setDigimon] = useState([]);
   const [currentLevel, setCurrentLevel] = useState('baby');
   const [counter, setCounter] = useState(0);
+  const [query, setQuery] = useState(null);
+  const [reset, setReset] = useState(false);
 
   const digimonContextValue = {
     levels,
@@ -82,13 +84,27 @@ function Digimon(){
     }
   }
 
-  useEffect(() => {
-    async function fetchDigimon() {
-      const response = await fetch(`/api/digimon/${currentLevel}/`);
-      const responseData = await response.json();
-      setDigimon(responseData.digimon);
-    }
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setQuery('');
+    setDigimon(digimon.filter(digi => {return digi.name.toLowerCase().startsWith(query.toLowerCase()) == true}))
+    setReset(true);
+  }
 
+
+  async function fetchDigimon() {
+    const response = await fetch(`/api/digimon/${currentLevel}/`);
+    const responseData = await response.json();
+    setDigimon(responseData.digimon);
+  }
+
+  const handleReset = (e) => {
+    e.preventDefault();
+    setReset(false);
+    fetchDigimon();
+  }
+
+  useEffect(() => {
     fetchDigimon();
   }, [currentLevel]);
 
@@ -101,8 +117,8 @@ function Digimon(){
       <DigimonContext.Provider value={digimonContextValue}>
         <div className="navButtons">
           {levels.map(level => <NavBttn text={level} handleClick={handleClick} currentLevel={currentLevel}/>)}
-          <input className="search"/>
-          <button className="navButton">Submit</button>
+          <input id="searchBar" className="search" value={query} onChange={(e) => setQuery(e.target.value)}/>
+          <button className="navButton" onClick={handleSearch}>Submit</button>
         </div>
         <div className="container">
           <Row startVal={counter}/>
@@ -110,6 +126,7 @@ function Digimon(){
           <div className="pageButtons">
             {counter === 0 ? <div></div> : <button onClick={handleBackClick} className="pageButton">Back</button>}
             {counter + 8 >= digimon.length ? <div></div>: <button onClick={handleNextClick}>Next</button>}
+            {reset ? <button onClick={handleReset}>Reset</button>: <div></div>}
           </div>
         </div>
       </DigimonContext.Provider>
