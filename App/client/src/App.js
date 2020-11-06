@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import { Switch, useLocation } from 'react-router-dom';
 
-import UserList from './components/UsersList';
 import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
-import UserForm from './components/UserForm';
 import Digimon from './components/Digimon';
+import Media from './components/Media';
 import AuthContext from './auth'
 import Navbar from './components/NavBar'
 
@@ -66,17 +65,6 @@ function App() {
             </nav>) : null}
             <Switch>
                 <ProtectedRoute
-                    path="/users"
-                    exact={true}
-                    component={UserList}
-                    currentUserId={currentUserId}
-                />
-                <ProtectedRoute
-                    path="/users/:id/edit"
-                    component={UserForm}
-                    currentUserId={currentUserId}
-                />
-                <ProtectedRoute
                     path="/digimon/:name/"
                     component={DigimonInfo}
                     currentUserId={currentUserId}
@@ -89,6 +77,12 @@ function App() {
                 <AuthRoute
                     path="/signup"
                     component={SignupForm}
+                    currentUserId={currentUserId}
+                />
+                <ProtectedRoute
+                    path="/media"
+                    exact={true}
+                    component={Media}
                     currentUserId={currentUserId}
                 />
                 <ProtectedRoute
