@@ -11,14 +11,14 @@ const RowWrapper = styled.div`
 `;
 
 function Row(props) {
-  const {digimon} = useContext(DigimonContext);
+  const {items, startVal, type} = props;
 
   return (
     <RowWrapper>
-      <Card digimon={digimon[props.startVal]}/>
-      <Card digimon={digimon[props.startVal + 1]}/>
-      <Card digimon={digimon[props.startVal + 2]}/>
-      <Card digimon={digimon[props.startVal + 3]}/>
+      <Card type={type} item={items[startVal]}/>
+      <Card type={type} item={items[startVal + 1]}/>
+      <Card type={type} item={items[startVal + 2]}/>
+      <Card type={type} item={items[startVal + 3]}/>
     </RowWrapper>
   )
 }

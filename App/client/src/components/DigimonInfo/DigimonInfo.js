@@ -92,7 +92,7 @@ function DigimonInfo(props) {
     async function fetchDigimon() {
       const response = await fetch(`/api/digimon/${name}/`);
       const responseData = await response.json();
-      setDigimon(responseData.digimon[0]);
+      setDigimon(responseData.data[0]);
     }
 
     fetchDigimon();

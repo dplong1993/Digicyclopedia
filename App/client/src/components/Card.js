@@ -28,20 +28,20 @@ const CardWrapper = styled.div`
 function Card(props) {
   let history = useHistory();
 
-  if(!props.digimon){
+  if(!props.item){
     return null
   }
 
   const handleClick = (e) => {
     e.preventDefault();
-    console.log(props.digimon.name);
-    history.push(`/digimon/${props.digimon.name}`);
+    console.log(props.item.name);
+    history.push(`/${props.type}/${props.item.name}`);
   }
 
   return (
     <CardWrapper onClick={handleClick}>
-      <img className="img" src={props.digimon.photo_url} alt={props.digimon.name}/>
-      <div className="name">{props.digimon.name}</div>
+      <img className="img" src={props.item.photo_url} alt={props.item.name}/>
+      <div className="name">{props.item.name}</div>
     </CardWrapper>
   )
 }

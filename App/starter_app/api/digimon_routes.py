@@ -9,50 +9,50 @@ digimon_routes = Blueprint('digimon', __name__)
 @login_required
 def index():
     response = Digimon.query.all()
-    return {"digimon": [digimon.to_dict() for digimon in response]}
+    return {"data": [digimon.to_dict() for digimon in response]}
 
 @digimon_routes.route('/baby/')
 @login_required
 def fetchBaby():
     response = Digimon.query.filter(Digimon.level == 'Baby').all()
-    return {"digimon": [digimon.to_dict() for digimon in response]}
+    return {"data": [digimon.to_dict() for digimon in response]}
 
 @digimon_routes.route('/in-training/')
 @login_required
 def fetchInTraining():
     response = Digimon.query.filter(Digimon.level == 'In-Training').all()
-    return {"digimon": [digimon.to_dict() for digimon in response]}
+    return {"data": [digimon.to_dict() for digimon in response]}
 
 @digimon_routes.route('/rookie/')
 @login_required
 def fetchRookie():
     response = Digimon.query.filter(Digimon.level == 'Rookie').all()
-    return {"digimon": [digimon.to_dict() for digimon in response]}
+    return {"data": [digimon.to_dict() for digimon in response]}
 
 @digimon_routes.route('/champion/')
 @login_required
 def fetchChampion():
     response = Digimon.query.filter(Digimon.level == 'Champion').all()
-    return {"digimon": [digimon.to_dict() for digimon in response]}
+    return {"data": [digimon.to_dict() for digimon in response]}
 
 @digimon_routes.route('/ultimate/')
 @login_required
 def fetchUltimate():
     response = Digimon.query.filter(Digimon.level == 'Ultimate').all()
-    return {"digimon": [digimon.to_dict() for digimon in response]}
+    return {"data": [digimon.to_dict() for digimon in response]}
 
 @digimon_routes.route('/mega/')
 @login_required
 def fetchMega():
     response = Digimon.query.filter(Digimon.level == 'Mega').all()
-    return {"digimon": [digimon.to_dict() for digimon in response]}
+    return {"data": [digimon.to_dict() for digimon in response]}
 
 
 @digimon_routes.route('/<string:name>/')
 @login_required
 def fetchDigimonByName(name):
     response = Digimon.query.filter(Digimon.name == name).one()
-    return {"digimon": [response.to_dict()]}
+    return {"data": [response.to_dict()]}
 
 # @user_routes.route('/<int:id>', methods=['GET', 'POST'])
 # def user_detail(id):

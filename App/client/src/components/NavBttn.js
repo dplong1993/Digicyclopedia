@@ -25,7 +25,7 @@ function NavBttn(props) {
 
   return (
     <NavBttnWrapper>
-      {props.text.toLowerCase() === props.currentLevel ?
+      {props.text.toLowerCase() === props.currentTab ?
       <button className="activeButton" onClick={props.handleClick}>{props.text}</button>:
       <button className="button" onClick={props.handleClick}>{props.text}</button>}
     </NavBttnWrapper>
