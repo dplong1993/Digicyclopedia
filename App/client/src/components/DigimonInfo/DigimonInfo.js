@@ -24,6 +24,8 @@ function DigimonInfo(props) {
     return null;
   }
 
+  console.log(digimon)
+
   return (
     <DigimonInfoWrapper>
       <h1>{name}</h1>

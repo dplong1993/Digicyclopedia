@@ -47,6 +47,13 @@ def fetchMega():
     response = Digimon.query.filter(Digimon.level == 'Mega').all()
     return {"digimon": [digimon.to_dict() for digimon in response]}
 
+
+@digimon_routes.route('/<string:name>/')
+@login_required
+def fetchDigimonByName(name):
+    response = Digimon.query.filter(Digimon.name == name).one()
+    return {"digimon": [response.to_dict()]}
+
 # @user_routes.route('/<int:id>', methods=['GET', 'POST'])
 # def user_detail(id):
 #     return {}
