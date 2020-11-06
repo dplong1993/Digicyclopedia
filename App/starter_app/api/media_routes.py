@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from starter_app.models import Digimon, db
+from starter_app.models import Media, db
 from flask_login import current_user, login_required, login_user
 
 media_routes = Blueprint('media', __name__)
