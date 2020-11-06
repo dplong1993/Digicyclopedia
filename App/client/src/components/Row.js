@@ -1,6 +1,5 @@
-import React, {useContext} from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import DigimonContext from '../digimon';
 import Card from './Card';
 
 const RowWrapper = styled.div`

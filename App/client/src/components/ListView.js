@@ -43,13 +43,17 @@ const ListViewWrapper = styled.div`
 `;
 
 function ListView(props){
+  const {type, tabs, defaultTab} = props;
+
+  const [items, setItems] = useState([]);
+  const [currentTab, setCurrentTab] = useState(defaultTab);
   const [counter, setCounter] = useState(0);
   const [query, setQuery] = useState(null);
   const [reset, setReset] = useState(false);
 
-  const handleClick = (e) => {
+  const handleNavClick = (e) => {
     e.preventDefault();
-    props.setCurrentTab(e.target.innerText.toLowerCase());
+    setCurrentTab(e.target.innerText.toLowerCase());
     setCounter(0);
   }
 
@@ -62,7 +66,7 @@ function ListView(props){
 
   const handleNextClick = (e) => {
     e.preventDefault();
-    if(props.items && counter < props.items.length){
+    if(items && counter < items.length){
       setCounter(counter+8);
     }
   }
@@ -70,14 +74,18 @@ function ListView(props){
   const handleSearch = (e) => {
     e.preventDefault();
     setQuery('');
-    props.setItems(props.items.filter(item => {return item.name.toLowerCase().startsWith(query.toLowerCase()) == true}))
+    setItems(items.filter(item => {return item.name.toLowerCase().startsWith(query.toLowerCase()) === true}))
     setReset(true);
   }
 
   async function fetchItems() {
-    const response = await fetch(`/api/${props.type}/${props.currentTab}/`);
-    const responseData = await response.json();
-    props.setItems(responseData.data);
+    debugger
+    if(type && currentTab){
+      debugger
+      const response = await fetch(`/api/${type}/${currentTab}/`);
+      const responseData = await response.json();
+      setItems(responseData.data);
+    }
   }
 
   const handleReset = (e) => {
@@ -88,25 +96,25 @@ function ListView(props){
 
   useEffect(() => {
     fetchItems();
-  }, []);
+  }, [currentTab]);
 
-  if(!props.items){
+  if(!items){
     return null;
   }
 
   return (
     <ListViewWrapper>
         <div className="navButtons">
-          {props.tabs.map(tab => <NavBttn text={tab} handleClick={handleClick} currentTab={props.currentTab}/>)}
+          {tabs.map(tab => <NavBttn text={tab} handleNavClick={handleNavClick} currentTab={currentTab}/>)}
           <input id="searchBar" className="search" placeholder="Enter beginning of a name" value={query} onChange={(e) => setQuery(e.target.value)}/>
           <button className="navButton" onClick={handleSearch}>Submit</button>
         </div>
         <div className="container">
-          <Row type = {props.type} items = {props.items} startVal={counter}/>
-          <Row type = {props.type} items = {props.items} startVal={counter+4}/>
+          <Row type = {type} items = {items} startVal={counter}/>
+          <Row type = {type} items = {items} startVal={counter+4}/>
           <div className="pageButtons">
             {counter === 0 ? <div></div> : <button onClick={handleBackClick} className="pageButton">Back</button>}
-            {counter + 8 >= props.items.length ? <div></div>: <button onClick={handleNextClick}>Next</button>}
+            {counter + 8 >= items.length ? <div></div>: <button onClick={handleNextClick}>Next</button>}
             {reset ? <button onClick={handleReset}>Reset</button>: <div></div>}
           </div>
         </div>

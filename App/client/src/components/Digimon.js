@@ -1,6 +1,5 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import ListView from './ListView';
-import DigimonContext from '../digimon';
 
 function Digimon(){
   const levels = [
@@ -11,32 +10,9 @@ function Digimon(){
     'Ultimate',
     'Mega'
   ]
-  const [digimon, setDigimon] = useState([]);
-  const [currentLevel, setCurrentLevel] = useState('baby');
-
-  const digimonContextValue = {
-    digimon,
-    setDigimon
-  }
-
-  async function fetchDigimon() {
-    const response = await fetch(`/api/digimon/${currentLevel}/`);
-    const responseData = await response.json();
-    setDigimon(responseData.data);
-  }
-
-  useEffect(() => {
-    fetchDigimon();
-  }, []);
-
-  if(!digimon){
-    return null;
-  }
 
   return (
-    <DigimonContext.Provider value={digimonContextValue}>
-      <ListView type={"digimon"} items={digimon} setItems={setDigimon} currentTab={currentLevel} setCurrentTab={setCurrentLevel} tabs={levels}/>
-    </DigimonContext.Provider>
+    <ListView type={"digimon"} tabs={levels} defaultTab={'baby'}/>
   )
 }
 
