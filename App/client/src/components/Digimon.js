@@ -23,7 +23,7 @@ const DigimonWrapper = styled.div`
   }
 
   .search {
-    width: 18%;
+    width: 20%;
     margin: 0 0 0 55px;
   }
 
@@ -117,7 +117,7 @@ function Digimon(){
       <DigimonContext.Provider value={digimonContextValue}>
         <div className="navButtons">
           {levels.map(level => <NavBttn text={level} handleClick={handleClick} currentLevel={currentLevel}/>)}
-          <input id="searchBar" className="search" value={query} onChange={(e) => setQuery(e.target.value)}/>
+          <input id="searchBar" className="search" placeholder="Enter beginning of a name" value={query} onChange={(e) => setQuery(e.target.value)}/>
           <button className="navButton" onClick={handleSearch}>Submit</button>
         </div>
         <div className="container">
