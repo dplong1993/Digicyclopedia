@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { useHistory, Redirect } from 'react-router-dom';
 import styled from 'styled-components';
 
 const CardWrapper = styled.div`
@@ -20,13 +20,13 @@ const CardWrapper = styled.div`
 
   .img {
     align-self: center;
-    width: 175px;
-    height: 220px;
+    width: 80%;
+    height: 90%;
   }
 `;
 
 function Card(props) {
-  // let history = useHistory();
+  let history = useHistory();
 
   if(!props.digimon){
     return null
@@ -35,13 +35,7 @@ function Card(props) {
   const handleClick = (e) => {
     e.preventDefault();
     console.log(props.digimon.name);
-    return <Redirect
-      to = {{
-        pathname: `/digimon/${props.digimon.name.toLowerCase()}`,
-        state: {digimon: props.digimon}
-      }}
-    />
-    // history.push(`/digimon/${props.digimon.id}`);
+    history.push(`/digimon/${props.digimon.name}`);
   }
 
   return (

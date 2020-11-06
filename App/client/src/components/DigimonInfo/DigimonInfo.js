@@ -1,19 +1,32 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { useParams } from 'react-router';
+
 
 const DigimonInfoWrapper = styled.div`
 `;
 
 function DigimonInfo(props) {
-  if(!props.digimon){
-    return null
+  const [digimon, setDigimon] = useState(null);
+  let { name } = useParams();
+
+  useEffect(() => {
+    async function fetchDigimon() {
+      const response = await fetch(`/api/digimon/${name}/`);
+      const responseData = await response.json();
+      setDigimon(responseData.digimon);
+    }
+
+    fetchDigimon();
+  }, [name]);
+
+  if(!digimon){
+    return null;
   }
 
   return (
     <DigimonInfoWrapper>
-      <div>
-        <img src="https://digicyclopedia.s3.us-east-2.amazonaws.com/Argomon_(Fresh)_b.jpg" alt="Argomon(Baby)" />
-      </div>
+      <h1>{name}</h1>
     </DigimonInfoWrapper>
   )
 }
