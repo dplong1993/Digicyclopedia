@@ -46,7 +46,7 @@ function Card(props) {
 
   return (
     <CardWrapper onClick={handleClick}>
-      <img className="img" src="https://digicyclopedia.s3.us-east-2.amazonaws.com/Argomon_(Fresh)_b.jpg" alt="Argomon(Baby)"/>
+      <img className="img" src={props.digimon.photo_url} alt={props.digimon.name}/>
       <div className="name">{props.digimon.name}</div>
     </CardWrapper>
   )
