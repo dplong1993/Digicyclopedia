@@ -50,6 +50,11 @@ function Navbar(){
     }
   }
 
+  const handleLogoClick = (e) => {
+    e.preventDefault();
+    history.push('/digimon');
+  }
+
   const handleClick = (e) => {
     e.preventDefault();
     history.push(`/${e.target.innerHTML.toLowerCase()}`)
@@ -57,7 +62,7 @@ function Navbar(){
 
   return (
     <NavbarWrapper>
-      <div className="logo">Digicyclopedia</div>
+      <div className="logo" onClick={handleLogoClick}>Digicyclopedia</div>
       <button onClick={handleClick} className="button">Digimon</button>
       <button onClick={handleClick} className="button">Media</button>
       <button onClick={handleClick} className="button">Profile</button>

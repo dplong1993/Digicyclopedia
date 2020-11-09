@@ -84,7 +84,7 @@ function SignupForm(){
       console.log(errors);
     } else {
       setCurrentUserId(responseData.current_user_id)
-      history.push('/')
+      history.push('/digimon')
     }
   }
 
