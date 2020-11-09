@@ -7,7 +7,7 @@ const InfoContainerWrapper = styled.div`
   flex-direction: column;
   border: 1px solid black;
   margin-right: 20px;
-  width: 40%;
+  width: 30%;
   height: 80%;
   font-family: Arial, sans-serif;
 

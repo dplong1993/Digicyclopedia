@@ -10,6 +10,7 @@ import Navbar from './components/NavBar'
 
 import { ProtectedRoute, AuthRoute } from './Routes';
 import DigimonInfo from './components/InfoComponents/DigimonInfo';
+import MediaInfo from './components/InfoComponents/MediaInfo'
 
 function App() {
     const [fetchWithCSRF, setFetchWithCSRF] = useState(() => fetch);
@@ -67,6 +68,11 @@ function App() {
                 <ProtectedRoute
                     path="/digimon/:name/"
                     component={DigimonInfo}
+                    currentUserId={currentUserId}
+                />
+                <ProtectedRoute
+                    path="/media/:name/"
+                    component={MediaInfo}
                     currentUserId={currentUserId}
                 />
                 <AuthRoute

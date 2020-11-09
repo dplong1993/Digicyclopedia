@@ -2,11 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const InfoBioWrapper = styled.div`
-  width: 60%;
-
-  .bioContainer{
-    width: 100%;
-  }
+  width: 70%;
 
   .bioHeader {
     margin: 0;
@@ -28,7 +24,7 @@ const InfoBio = (props) => {
 
   return (
     <InfoBioWrapper>
-      <div className="bioContainer">
+      <div>
         <div className="bioHeader">About {item.name}</div>
         <p className="bio">{item.bio}</p>
       </div>

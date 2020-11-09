@@ -34,8 +34,8 @@ def fetchCCGS():
     response = Media.query.filter(Media.type == 'CCG').all()
     return {"data": [thing.to_dict() for thing in response]}
 
-# @media_routes.route('/<string:name>/')
-# @login_required
-# def fetchDigimonByName(name):
-#     response = Digimon.query.filter(Digimon.name == name).one()
-#     return {"data": [response.to_dict()]}
+@media_routes.route('/<string:name>/')
+@login_required
+def fetchMediaByName(name):
+    response = Media.query.filter(Media.name == name).one()
+    return {"data": [response.to_dict()]}
