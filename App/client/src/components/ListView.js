@@ -96,6 +96,7 @@ function ListView(props){
 
   useEffect(() => {
     fetchItems();
+    // eslint-disable-next-line
   }, [currentTab]);
 
   if(!items){

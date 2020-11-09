@@ -9,7 +9,7 @@ import AuthContext from './auth'
 import Navbar from './components/NavBar'
 
 import { ProtectedRoute, AuthRoute } from './Routes';
-import DigimonInfo from './components/DigimonInfo/DigimonInfo';
+import DigimonInfo from './components/InfoComponents/DigimonInfo';
 
 function App() {
     const [fetchWithCSRF, setFetchWithCSRF] = useState(() => fetch);
