@@ -31,6 +31,73 @@ wanyamon
 yokomon
 
 ### ROOKIE
+# Done
+Agumon(Black)
+
+# Check Digivolutions
+Biyomon
+Chuumon
+DemiDevimon
+Hagurumon
+Mushroomon
+Palmon
+ToyAgumon(Black)
+
+# Add to database
+Agumon
+Arcadiamon(Rookie)
+Armadillomon
+Aruraumon
+Betamon
+ClearAgumon
+Dorumon
+Dracmon
+Dracomon
+Elecmon
+Falcomon
+FanBeemon
+Gabumon
+Gabumon(Black)
+Gaomon
+Gazimon
+Goblimon
+Gomamon
+Gotsumon
+Guilmon
+Gumdramon
+Hackmon
+Hawkmon
+Impmon
+Keramon
+Kudamon
+Lalamon
+Lopmon
+Lucemon
+Lunamon
+Monodramon
+Otamamon
+Patamon
+Psychemon
+Renamon
+Ryudamon
+Salamon
+Shamamon
+Shoutmon
+Sistermon Blanc
+Sistermon Blanc(Awake)
+SnowAgumon
+SnowGoblimon
+Solarmon
+Syakomon
+Tentomon
+Terriermon
+ToyAgumon
+Tsukaimon
+Veemon
+Wormmon
+Zubamon
+
+
 ### CHAMPION
 ### ULTIMATE
 ### MEGA
