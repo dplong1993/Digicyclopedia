@@ -12,9 +12,11 @@ def index():
     return {"users": [user.to_dict() for user in response]}
 
 
-@user_routes.route('/<int:id>', methods=['GET', 'POST'])
-def user_detail(id):
-    return {}
+@user_routes.route('/<int:id>')
+@login_required
+def get_user(id):
+    user = User.query.get(id)
+    return {"user": user.to_dict()}
 
 
 @user_routes.route('/', methods=["POST"])
