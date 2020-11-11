@@ -12,12 +12,12 @@ with app.app_context():
 # USERS                                                                             #
 #####################################################################################
 
-  ian = User(username = 'Ian', email = 'ian@aa.io', password = 'password')
-  javier = User(username = 'Javier', email = 'javier@aa.io', password = 'password')
-  dean = User(username = 'Dean', email = 'dean@aa.io', password = 'password')
-  angela = User(username = 'Angela', email = 'angela@aa.io', password = 'password')
-  soonmi = User(username = 'Soon-Mi', email = 'soonmi@aa.io', password = 'password')
-  alissa = User(username = 'Alissa', email = 'alissa@aa.io', password = 'password')
+  ian = User(username = 'Ian', email = 'ian@aa.io', password = 'password', photo_url = 'https://digicyclopedia.s3.us-east-2.amazonaws.com/UserImages/default-profile-icon-17.jpg')
+  javier = User(username = 'Javier', email = 'javier@aa.io', password = 'password', photo_url = 'https://digicyclopedia.s3.us-east-2.amazonaws.com/UserImages/default-profile-icon-17.jpg')
+  dean = User(username = 'Dean', email = 'dean@aa.io', password = 'password', photo_url = 'https://digicyclopedia.s3.us-east-2.amazonaws.com/UserImages/default-profile-icon-17.jpg')
+  angela = User(username = 'Angela', email = 'angela@aa.io', password = 'password', photo_url = 'https://digicyclopedia.s3.us-east-2.amazonaws.com/UserImages/default-profile-icon-17.jpg')
+  soonmi = User(username = 'Soon-Mi', email = 'soonmi@aa.io', password = 'password', photo_url = 'https://digicyclopedia.s3.us-east-2.amazonaws.com/UserImages/default-profile-icon-17.jpg')
+  alissa = User(username = 'Alissa', email = 'alissa@aa.io', password = 'password', photo_url = 'https://digicyclopedia.s3.us-east-2.amazonaws.com/UserImages/default-profile-icon-17.jpg')
 
   db.session.add(ian)
   db.session.add(javier)
@@ -159,17 +159,18 @@ with app.app_context():
   db.session.add(yokomon)
 
   # db.session.add(argomonR)
+  # db.session.add(floramon)
+  # db.session.add(kokuwamon)
+  # db.session.add(kotemon)
+  # db.session.add(pawnChessmonb)
+
   db.session.add(biyomon)
   db.session.add(agumonB)
   db.session.add(chuumon)
   db.session.add(demiDevimon)
-  db.session.add(floramon)
   db.session.add(hagurumon)
-  db.session.add(kokuwamon)
-  db.session.add(kotemon)
   db.session.add(mushroomon)
   db.session.add(palmon)
-  db.session.add(pawnChessmonb)
   db.session.add(toyAgumonb)
 
   db.session.add(argomonC)

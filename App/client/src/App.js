@@ -10,7 +10,8 @@ import Navbar from './components/NavBar'
 
 import { ProtectedRoute, AuthRoute } from './Routes';
 import DigimonInfo from './components/InfoComponents/DigimonInfo';
-import MediaInfo from './components/InfoComponents/MediaInfo'
+import MediaInfo from './components/InfoComponents/MediaInfo';
+import UserInfo from './components/InfoComponents/UserInfo';
 
 function App() {
     const [fetchWithCSRF, setFetchWithCSRF] = useState(() => fetch);
@@ -83,6 +84,12 @@ function App() {
                 <AuthRoute
                     path="/signup"
                     component={SignupForm}
+                    currentUserId={currentUserId}
+                />
+                <ProtectedRoute
+                    path="/profile"
+                    exact={true}
+                    component={UserInfo}
                     currentUserId={currentUserId}
                 />
                 <ProtectedRoute
