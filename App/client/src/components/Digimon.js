@@ -3,6 +3,7 @@ import ListView from './ListView';
 
 function Digimon(){
   const levels = [
+    "All",
     'Baby',
     'In-Training',
     'Rookie',
@@ -12,7 +13,7 @@ function Digimon(){
   ]
 
   return (
-    <ListView type={"digimon"} tabs={levels} defaultTab={'baby'}/>
+    <ListView type={"digimon"} tabs={levels} defaultTab={'all'}/>
   )
 }
 

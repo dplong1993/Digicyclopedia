@@ -14,16 +14,23 @@ const ListViewWrapper = styled.div`
     padding-top: 10px;
     margin: 0 auto 0 auto;
     display: flex;
+    position: relative;
+  }
+
+  .searchForm {
+    position: absolute;
+    width: auto;
+    right: 0px;
   }
 
   .navButton {
-    width: 11%;
+    width: 24%;
     margin: 0 0 0 0;
   }
 
   .search {
-    width: 20%;
-    margin: 0 0 0 55px;
+    width: 58%;
+    margin: 0 0 0 40px;
   }
 
   .container {
@@ -80,7 +87,8 @@ function ListView(props){
 
   async function fetchItems() {
     if(type && currentTab){
-      const response = await fetch(`/api/${type}/${currentTab}/`);
+      const response = currentTab === "all" ?
+        await fetch(`/api/${type}/`) : await fetch(`/api/${type}/${currentTab}/`);
       const responseData = await response.json();
       setItems(responseData.data);
     }
@@ -105,8 +113,10 @@ function ListView(props){
     <ListViewWrapper>
         <div className="navButtons">
           {tabs.map(tab => <NavBttn key={tab} text={tab} handleNavClick={handleNavClick} currentTab={currentTab}/>)}
-          <input id="searchBar" className="search" placeholder="Enter beginning of a name" value={query ? query: ''} onChange={(e) => setQuery(e.target.value)}/>
-          <button className="navButton" onClick={handleSearch}>Submit</button>
+          <form className="searchForm" onSubmit={handleSearch}>
+            <input id="searchBar" className="search" placeholder="Enter beginning of a name" value={query ? query: ''} onChange={(e) => setQuery(e.target.value)}/>
+            <button className="navButton">Submit</button>
+          </form>
         </div>
         <div className="container">
           <Row type = {type} items = {items} startVal={counter}/>

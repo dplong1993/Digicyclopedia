@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 const NavBttnWrapper = styled.div`
-  width: 11%;
+  width: 10%;
 
   .activeButton{
     width: 100%;
