@@ -18,6 +18,21 @@ def get_user(id):
     user = User.query.get(id)
     return {"user": user.to_dict()}
 
+@user_routes.route('/<int:id>', methods=["POST"])
+@login_required
+def update_user(id):
+    type, input = request.json.values()
+    user = User.query.get(id)
+    try:
+        if type == 'email':
+            user.email = input
+        else:
+            user.username = input
+        db.session.add(user)
+        db.session.commit()
+        return {"msg": "Update complete!"}
+    except:
+        return {"errors": ["Invalid Input"]}, 400
 
 @user_routes.route('/', methods=["POST"])
 def createUser():

@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import AuthContext from '../../auth';
 import styled from 'styled-components';
+import ModalInput from './ModalInput';
 
 const UserInfoWrapper = styled.div`
   .userInfoContainer {
@@ -26,8 +27,8 @@ const UserInfoWrapper = styled.div`
     color: black;
   }
 
-  label {
-    width: 33%;
+  .inputLabel {
+    width: 20%;
     height: 50px;
     line-height: 50px;
     text-align: center;
@@ -37,7 +38,7 @@ const UserInfoWrapper = styled.div`
   }
 
   .userDetail {
-    width: 33%;
+    width: 50%;
     height: 50px;
     line-height: 50px;
     text-align: center;
@@ -46,7 +47,7 @@ const UserInfoWrapper = styled.div`
     border: 1px Solid black;
   }
 
-  button {
+  .inputButton {
     width: 28%;
     height: 50px;
     line-height: 50px;
@@ -59,6 +60,22 @@ const UserInfoWrapper = styled.div`
 function UserInfo(props) {
   const {currentUserId} = useContext(AuthContext);
   const [user, setUser] = useState(null);
+  const [inputType, setInputType] = useState(null);
+  const [inputText, setInputText] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+
+  const handleClick = e => {
+    e.preventDefault();
+    const buttonStr = e.target.innerText
+    const strArr = buttonStr.split(" ");
+    strArr[1] === "Email" ? setInputType("email") : setInputType("text");
+    setInputText(strArr[1]);
+    setShowModal(true);
+  }
+
+  const closeModal = () => {
+    setShowModal(false);
+  }
 
   useEffect(() => {
     async function fetchUser() {
@@ -68,7 +85,7 @@ function UserInfo(props) {
     }
 
     fetchUser();
-  }, [currentUserId]);
+  }, [currentUserId, showModal]);
 
   if(!user){
     return null;
@@ -77,17 +94,18 @@ function UserInfo(props) {
   return (
     <UserInfoWrapper>
       <div className="userInfoContainer">
-        <img className="profilePicture" src={user.photo_url} alt="Profile Picture" />
+        {showModal ? <ModalInput text={inputText} type={inputType} close={closeModal}/> : null}
+        <img className="profilePicture" src={user.photo_url} alt="Profile" />
         <div className="userInfo">
           <div className="infoContainer">
-            <label htmlFor="username">Username</label>
+            <label className="inputLabel" htmlFor="username">Username</label>
             <div id="username" className="userDetail">{user.username}</div>
-            <button>Update Username</button>
+            <button className="inputButton" onClick={handleClick}>Update Username</button>
           </div>
           <div className="infoContainer">
-            <label htmlFor="email">Email</label>
+            <label className="inputLabel" htmlFor="email">Email</label>
             <div id="email" className="userDetail">{user.email}</div>
-            <button>Update Email</button>
+            <button className="inputButton" onClick={handleClick}>Update Email</button>
           </div>
         </div>
       </div>

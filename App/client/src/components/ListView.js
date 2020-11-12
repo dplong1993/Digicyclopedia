@@ -79,9 +79,7 @@ function ListView(props){
   }
 
   async function fetchItems() {
-    debugger
     if(type && currentTab){
-      debugger
       const response = await fetch(`/api/${type}/${currentTab}/`);
       const responseData = await response.json();
       setItems(responseData.data);
@@ -106,8 +104,8 @@ function ListView(props){
   return (
     <ListViewWrapper>
         <div className="navButtons">
-          {tabs.map(tab => <NavBttn text={tab} handleNavClick={handleNavClick} currentTab={currentTab}/>)}
-          <input id="searchBar" className="search" placeholder="Enter beginning of a name" value={query} onChange={(e) => setQuery(e.target.value)}/>
+          {tabs.map(tab => <NavBttn key={tab} text={tab} handleNavClick={handleNavClick} currentTab={currentTab}/>)}
+          <input id="searchBar" className="search" placeholder="Enter beginning of a name" value={query ? query: ''} onChange={(e) => setQuery(e.target.value)}/>
           <button className="navButton" onClick={handleSearch}>Submit</button>
         </div>
         <div className="container">
