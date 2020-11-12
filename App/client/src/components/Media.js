@@ -3,14 +3,15 @@ import ListView from './ListView';
 
 function Media(){
   const tabs = [
+    "All",
     'Tv-Show',
     'Movie',
-    'Video-Game',
+    'Game',
     'CCG'
   ]
 
   return (
-    <ListView type={"media"} tabs={tabs} defaultTab={'tv-show'}/>
+    <ListView type={"media"} tabs={tabs} defaultTab={'all'}/>
   )
 }
 
