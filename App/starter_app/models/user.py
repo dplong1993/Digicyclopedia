@@ -34,8 +34,20 @@ class User(db.Model, UserMixin):
           "username": self.username,
           "email": self.email,
           "photo_url": self.photo_url,
-          "fav_digimon": self.fav_digimon,
-          "fav_media": self.fav_media
+          "fav_digimon": [{"id": digimon.id,
+                           "name": digimon.name,
+                           "level": digimon.level,
+                           "previous_form": digimon.previous_form,
+                           "next_form": digimon.next_form,
+                           "bio": digimon.bio,
+                           "photo_url": digimon.photo_url
+                           } for digimon in self.fav_digimon],
+         "fav_media": [{"id": media.id,
+                        "name": media.name,
+                        "type": media.type,
+                        "bio": media.bio,
+                        "photo_url": media.photo_url
+                        } for media in self.fav_media]
         }
 
     @property

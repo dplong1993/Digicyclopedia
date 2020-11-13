@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
@@ -54,23 +54,26 @@ function Card(props) {
 
   const {item, type, favItems, setFavItems} = props;
 
+  useEffect(() => {
+    function checkFavs() {
+      if(item && favItems){
+        if(!favorite && favItems.includes(item.name)){
+          //Not marked as favorite but in favList so need to mark.
+          setFavorite(true);
+        }
+        if(favorite && !favItems.includes(item.name)){
+          //Marked as favorite but is not in the favList so need to unmark.
+          setFavorite(false)
+        }
+      }
+    };
+    checkFavs();
+    // eslint-disable-next-line
+  }, [item, favItems]);
+
   if(!props.item){
     return null
   }
-
-  if(favItems.includes(item.name) && !favorite){
-    //Not favorite is a check to see if we already made favorite true or not
-    setFavorite(true);
-  }
-  // else if(!favItems.includes(item.name) && favorite){
-  //   //A heart is check for a digimon that is not in the favItems list
-  //   setFavorite(false);
-  // }
-
-  // if(!favItems.includes(item.name) && favorite){
-  //   //Not favorite is a check to see if we already made favorite true or not
-  //   setFavorite(false);
-  // }
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -89,7 +92,7 @@ function Card(props) {
             itemId
         })
     });
-    // setFavItems([...favItems, item.name])
+    setFavItems([...favItems, item.name])
   }
 
   async function deleteFav(item) {
@@ -104,10 +107,8 @@ function Card(props) {
             itemId
         })
     });
-    // const idx = favItems.indexOf(item.name);
-    // console.log("BEFORE SPLICE", favItems)
-    // setFavItems(favItems.splice(idx, 1))
-    // console.log("AFTER SPLICE", favItems)
+    const idx = favItems.indexOf(item.name);
+    setFavItems([...favItems.slice(0, idx), ...favItems.slice(idx+1)])
   }
 
   const handleFavClick = e => {
@@ -122,7 +123,6 @@ function Card(props) {
     setFavorite(!favorite);
   }
 
-  console.log("FAV ITEMS", favItems)
   return (
     <CardWrapper>
       <img onClick={handleClick} className="img" src={props.item.photo_url} alt={props.item.name}/>

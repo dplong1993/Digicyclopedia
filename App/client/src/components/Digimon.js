@@ -1,5 +1,7 @@
+// eslint-disable-next-line
 import React, {useState, useEffect, useContext} from 'react';
 import ListView from './ListView';
+// eslint-disable-next-line
 import AuthContext from '../auth';
 
 function Digimon(){
@@ -13,7 +15,7 @@ function Digimon(){
         setFavDigimon(responseData.data);
     }
     fetchData();
-  }, []);
+  }, [currentUserId]);
 
   const levels = [
     "All",
