@@ -10,14 +10,14 @@ const RowWrapper = styled.div`
 `;
 
 function Row(props) {
-  const {items, startVal, type} = props;
+  const {items, startVal, type, favItems, setFavItems} = props;
 
   return (
     <RowWrapper>
-      <Card type={type} item={items[startVal]}/>
-      <Card type={type} item={items[startVal + 1]}/>
-      <Card type={type} item={items[startVal + 2]}/>
-      <Card type={type} item={items[startVal + 3]}/>
+      <Card type={type} favItems={favItems} setFavItems={setFavItems} item={items[startVal]}/>
+      <Card type={type} favItems={favItems} setFavItems={setFavItems} item={items[startVal + 1]}/>
+      <Card type={type} favItems={favItems} setFavItems={setFavItems} item={items[startVal + 2]}/>
+      <Card type={type} favItems={favItems} setFavItems={setFavItems} item={items[startVal + 3]}/>
     </RowWrapper>
   )
 }

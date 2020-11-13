@@ -50,7 +50,7 @@ const ListViewWrapper = styled.div`
 `;
 
 function ListView(props){
-  const {type, tabs, defaultTab} = props;
+  const {type, tabs, defaultTab, favItems, setFavItems} = props;
 
   const [items, setItems] = useState([]);
   const [currentTab, setCurrentTab] = useState(defaultTab);
@@ -119,8 +119,8 @@ function ListView(props){
           </form>
         </div>
         <div className="container">
-          <Row type = {type} items = {items} startVal={counter}/>
-          <Row type = {type} items = {items} startVal={counter+4}/>
+          <Row type = {type} favItems= {favItems} setFavItems={setFavItems} items = {items} startVal={counter}/>
+          <Row type = {type} favItems= {favItems} setFavItems={setFavItems} items = {items} startVal={counter+4}/>
           <div className="pageButtons">
             {counter === 0 ? <div></div> : <button onClick={handleBackClick} className="pageButton">Back</button>}
             {counter + 8 >= items.length ? <div></div>: <button onClick={handleNextClick}>Next</button>}

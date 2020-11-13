@@ -9,6 +9,8 @@ class Media(db.Model):
   bio = db.Column(db.Text, nullable=False)
   photo_url = db.Column(db.String, nullable=False)
 
+  users = db.relationship("User", secondary="favorite_media", back_populates="fav_media")
+
   def to_dict(self):
     return {
       "id": self.id,

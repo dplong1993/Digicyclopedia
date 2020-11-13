@@ -2,6 +2,20 @@ from . import db
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
 
+favorite_digimon = db.Table(
+    "favorite_digimon",
+    db.Model.metadata,
+    db.Column("digimon_id", db.Integer, db.ForeignKey("digimon.id"), primary_key=True),
+    db.Column("user_id", db.Integer, db.ForeignKey("users.id"), primary_key=True),
+)
+
+favorite_media = db.Table(
+    "favorite_media",
+    db.Model.metadata,
+    db.Column("media_id", db.Integer, db.ForeignKey("media.id"), primary_key=True),
+    db.Column("user_id", db.Integer, db.ForeignKey("users.id"), primary_key=True),
+)
+
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
@@ -11,12 +25,17 @@ class User(db.Model, UserMixin):
     password_digest = db.Column(db.String(255), nullable=False)
     photo_url = db.Column(db.String, nullable=False)
 
+    fav_digimon = db.relationship("Digimon", secondary="favorite_digimon", back_populates="users")
+    fav_media = db.relationship("Media", secondary="favorite_media", back_populates="users")
+
     def to_dict(self):
         return {
           "id": self.id,
           "username": self.username,
           "email": self.email,
-          "photo_url": self.photo_url
+          "photo_url": self.photo_url,
+          "fav_digimon": self.fav_digimon,
+          "fav_media": self.fav_media
         }
 
     @property

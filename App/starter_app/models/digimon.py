@@ -11,6 +11,8 @@ class Digimon(db.Model):
   bio = db.Column(db.Text, nullable=False)
   photo_url = db.Column(db.String, nullable=False)
 
+  users = db.relationship("User", secondary="favorite_digimon", back_populates="fav_digimon")
+
   def to_dict(self):
     return {
       "id": self.id,

@@ -1,7 +1,20 @@
-import React from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import ListView from './ListView';
+import AuthContext from '../auth';
 
 function Digimon(){
+  const {currentUserId} = useContext(AuthContext);
+  const [favDigimon, setFavDigimon] = useState(null);
+
+  useEffect(() => {
+    async function fetchData() {
+        const response = await fetch(`/api/users/${currentUserId}/fav_digimon`);
+        const responseData = await response.json();
+        setFavDigimon(responseData.data);
+    }
+    fetchData();
+  }, []);
+
   const levels = [
     "All",
     'Baby',
@@ -12,8 +25,12 @@ function Digimon(){
     'Mega'
   ]
 
+  if(!favDigimon){
+    return null;
+  }
+
   return (
-    <ListView type={"digimon"} tabs={levels} defaultTab={'all'}/>
+    <ListView type={"digimon"} favItems={favDigimon} setFavItems={setFavDigimon} tabs={levels} defaultTab={'all'}/>
   )
 }
 

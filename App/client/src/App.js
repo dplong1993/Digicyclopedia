@@ -5,7 +5,7 @@ import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
 import Digimon from './components/Digimon';
 import Media from './components/Media';
-import AuthContext from './auth'
+import AuthContext from './auth';
 import Navbar from './components/NavBar'
 
 import { ProtectedRoute, AuthRoute } from './Routes';
