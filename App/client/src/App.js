@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { Switch, useLocation } from 'react-router-dom';
+import { Route, Redirect, Switch, useLocation } from 'react-router-dom';
 
 import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
@@ -104,6 +104,9 @@ function App() {
                     component={Digimon}
                     currentUserId={currentUserId}
                 />
+                <Route exact path="/">
+                    <Redirect to="/digimon" />
+                </Route>
             </Switch>
         </AuthContext.Provider>
     );

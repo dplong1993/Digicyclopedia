@@ -92,7 +92,8 @@ function Card(props) {
             itemId
         })
     });
-    setFavItems([...favItems, item.name])
+    if(favItems) setFavItems([...favItems, item.name])
+    else setFavItems([item.name])
   }
 
   async function deleteFav(item) {

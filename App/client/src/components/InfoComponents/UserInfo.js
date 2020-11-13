@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import AuthContext from '../../auth';
 import styled from 'styled-components';
 import ModalInput from './ModalInput';
+import ProfileListView from './ProfileListView'
 
 const UserInfoWrapper = styled.div`
   .userInfoContainer {
@@ -108,6 +109,9 @@ function UserInfo(props) {
             <button className="inputButton" onClick={handleClick}>Update Email</button>
           </div>
         </div>
+      </div>
+      <div className="favorites">
+        <ProfileListView digimon={user.fav_digimon} media={user.fav_media} />
       </div>
     </UserInfoWrapper>
   )
