@@ -36,8 +36,9 @@ const CardWrapper = styled.div`
   .img {
     align-self: center;
     width: 80%;
-    height: 90%;
+    height: 80%;
     cursor: pointer;
+    padding-bottom: 10px;
   }
 
   .icon {
