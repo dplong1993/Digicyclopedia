@@ -53,7 +53,8 @@ function ProfileCard(props) {
     <ProfileCardWrapper>
       <img onClick={handleClick} className="img" src={props.item.photo_url} alt={props.item.name}/>
       <div className="info">
-        <div className="name">{props.item.name}</div>
+        {type === "media" ? null :
+        <div className="name">{props.item.name}</div>}
       </div>
     </ProfileCardWrapper>
   )

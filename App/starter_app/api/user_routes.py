@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from starter_app.models import User, Digimon, db
+from starter_app.models import User, Digimon, Media, db
 from flask_login import current_user, login_required, login_user
 
 user_routes = Blueprint('users', __name__)
@@ -64,6 +64,42 @@ def delete_fav_digimon(id):
     user = User.query.get(id)
     try:
         user.fav_digimon.remove(digimon)
+        db.session.add(user)
+        db.session.commit()
+        return {"msg": "Update complete!"}
+    except:
+        pass
+
+@user_routes.route('/<int:id>/fav_media')
+@login_required
+def get_fav_media(id):
+    user = User.query.get(id)
+    media = [media.name for media in user.fav_media]
+    # print("==============", digimon)
+    return {"data": media}
+
+@user_routes.route('/<int:id>/fav_media', methods=["POST"])
+@login_required
+def update_fav_media(id):
+    mediaId = request.json.values()
+    media = Media.query.get(mediaId)
+    user = User.query.get(id)
+    try:
+        user.fav_media.append(media)
+        db.session.add(user)
+        db.session.commit()
+        return {"msg": "Update complete!"}
+    except:
+        pass
+
+@user_routes.route('/<int:id>/fav_media', methods=["DELETE"])
+@login_required
+def delete_fav_media(id):
+    mediaId = request.json.values()
+    media = Media.query.get(mediaId)
+    user = User.query.get(id)
+    try:
+        user.fav_media.remove(media)
         db.session.add(user)
         db.session.commit()
         return {"msg": "Update complete!"}

@@ -16,6 +16,7 @@ const CardWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding-top: 20px;
 
   .info {
     align-self: center;
@@ -23,6 +24,7 @@ const CardWrapper = styled.div`
     width: 80%;
     justify-content: center;
     height: 30px;
+    padding-bottom: 20px;
   }
 
   .name {
@@ -82,7 +84,7 @@ function Card(props) {
 
   async function addFav(item) {
     const itemId = item.id;
-    await fetchWithCSRF(`/api/users/${currentUserId}/fav_digimon`, {
+    await fetchWithCSRF(`/api/users/${currentUserId}/fav_${type}`, {
         method: 'POST',
         headers: {
             "Content-Type": "application/json",
@@ -98,7 +100,7 @@ function Card(props) {
 
   async function deleteFav(item) {
     const itemId = item.id;
-    await fetchWithCSRF(`/api/users/${currentUserId}/fav_digimon`, {
+    await fetchWithCSRF(`/api/users/${currentUserId}/fav_${type}`, {
         method: 'DELETE',
         headers: {
             "Content-Type": "application/json",
