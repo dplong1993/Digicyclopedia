@@ -5,15 +5,15 @@ import AuthContext from '../auth';
 
 const SplashWrapper = styled.div `
   width: 75%;
-  height: 60vh;
+  height: 80vh;
   background-color: #fc6701;
   margin: 50px auto;
-  display: grid;
-  grid-template-rows: 42% 10% 48%;
+  display: flex;
+  flex-direction: column;
 
   .info {
     width: 60%;
-    height: 100%;
+    height: 40%;
     margin: auto;
     margin-top: 20px;
     font-size: 25px;
@@ -26,11 +26,12 @@ const SplashWrapper = styled.div `
     display: flex;
     justify-content: center;
     margin: auto;
+    height: 10%;
   }
 
   .image {
     width: 60%;
-    height: 90%;
+    height: 40%;
     margin: auto;
   }
 
@@ -55,7 +56,9 @@ function Splash(){
 
   return (
     <SplashWrapper>
-      <div className="info">This is Digicyclopedia a site where you can look up different digimon or digimon media to learn more about them and like your favorite digimon or digimon media so they will show up on your profile. </div>
+      <div className="info">
+        <p>This is Digicyclopedia a site where you can look up different digimon or digimon media to learn more about them and like your favorite digimon or digimon media so they will show up on your profile. </p>
+      </div>
       {currentUserId ? <div /> :
       <div className="buttons">
         <button className="button" onClick={() => history.push('/login')}>Login</button>

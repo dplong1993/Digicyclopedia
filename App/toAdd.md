@@ -1,3 +1,7 @@
+## Bugs
+* When adding a new user if the username or email has been used for a different account a 500 error will occur. Need to create error handling for this situation.
+
+
 ## ADDED
 
 ### FRESH
