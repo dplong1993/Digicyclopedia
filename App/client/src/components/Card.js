@@ -29,7 +29,7 @@ const CardWrapper = styled.div`
 
   .name {
     align-self: center;
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 20px;
   }
 
