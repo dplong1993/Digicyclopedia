@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { Route, Redirect, Switch, useLocation } from 'react-router-dom';
+import { Route, Switch, useLocation } from 'react-router-dom';
 
 import LoginForm from './components/LoginForm';
 import SignupForm from './components/SignupForm';
