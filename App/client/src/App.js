@@ -12,6 +12,7 @@ import { ProtectedRoute, AuthRoute } from './Routes';
 import DigimonInfo from './components/InfoComponents/DigimonInfo';
 import MediaInfo from './components/InfoComponents/MediaInfo';
 import UserInfo from './components/InfoComponents/UserInfo';
+import Splash from './components/Splash'
 
 function App() {
     const [fetchWithCSRF, setFetchWithCSRF] = useState(() => fetch);
@@ -105,7 +106,7 @@ function App() {
                     currentUserId={currentUserId}
                 />
                 <Route exact path="/">
-                    <Redirect to="/digimon" />
+                    <Splash />
                 </Route>
             </Switch>
         </AuthContext.Provider>

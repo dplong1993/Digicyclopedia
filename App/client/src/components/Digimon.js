@@ -1,7 +1,5 @@
-// eslint-disable-next-line
 import React, {useState, useEffect, useContext} from 'react';
 import ListView from './ListView';
-// eslint-disable-next-line
 import AuthContext from '../auth';
 
 function Digimon(){

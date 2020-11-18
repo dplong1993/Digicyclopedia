@@ -4,12 +4,13 @@ import AuthContext from '../auth';
 import styled from 'styled-components';
 
 const SignupFormWrapper = styled.div`
-  width: 100vw;
+  width: 50vw;
   height: 50vh;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
   background-color: #064b88;
+  margin: auto;
 
   h1 {
       margin: auto auto 10px auto;
@@ -21,11 +22,12 @@ const SignupFormWrapper = styled.div`
       margin: 15px auto 10px auto;
       font-size: 15px;
       color: #fc6701;
+      text-align: center;
   }
 
   .form{
       margin: 20px auto 20px auto;
-      width: 35%;
+      width: 60%;
       margin-bottom: 0;
       display: flex;
       flex-direction: column;
@@ -46,6 +48,7 @@ const SignupFormWrapper = styled.div`
       background-color: #fc6701;
       color: #064b88;
       font-weight: bold;
+      cursor: pointer;
   }
 
   .input {

@@ -46,13 +46,13 @@ function Navbar(){
     });
     if(response.ok){
         setCurrentUserId(null);
-        history.push('/login');
+        history.push('/');
     }
   }
 
   const handleLogoClick = (e) => {
     e.preventDefault();
-    history.push('/digimon');
+    history.push('/');
   }
 
   const handleClick = (e) => {

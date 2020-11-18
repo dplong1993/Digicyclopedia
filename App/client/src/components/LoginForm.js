@@ -4,15 +4,16 @@ import AuthContext from '../auth';
 import styled from 'styled-components';
 
 const LoginFormWrapper = styled.div`
-    width: 100vw;
+    width: 50vw;
     height: 50vh;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
     background-color: #064b88;
+    margin: auto;
 
     h1 {
-        margin: auto auto 10px auto;
+        margin: 20px auto 10px auto;
         border-bottom: 5px solid #fecc3d;
         color: #fc6701;
     }
@@ -25,7 +26,7 @@ const LoginFormWrapper = styled.div`
 
     .form{
         margin: 20px auto 20px auto;
-        width: 35%;
+        width: 60%;
         margin-bottom: 0;
         display: flex;
         flex-direction: column;
@@ -46,6 +47,7 @@ const LoginFormWrapper = styled.div`
         background-color: #fc6701;
         color: #064b88;
         font-weight: bold;
+        cursor: pointer;
     }
 
     .input {
@@ -88,7 +90,7 @@ function LoginForm(props) {
             setErrors(responseData.errors);
         } else {
             setCurrentUserId(responseData.current_user_id)
-            history.push('/digimon')
+            history.push('/')
         }
     }
 
