@@ -206,7 +206,24 @@ with app.app_context():
 #################################################################
 
   da1 = Media(name="Digimon Adventure", type="Tv-Show", bio="Digimon Adventure (デジモンアドベンチャー Dejimon Adobenchā?) is the first season of the anime saga Digimon: Digital Monsters. Its premise involves a group of boys and girls being whisked to a parallel reality called the Digital World, sometimes called 'DigiWorld' for short, while at summer camp. They were taken there because they were chosen to become DigiDestined, the children that would save the Digital World (along with Earth near the end of the series) from the evil forces that threatened to destroy it. Each of the children received a Digimon partner who was preprogrammed to be bonded to them, as well as miniature devices called Digivices. With the power of the Digivices, their Digimon partners could become stronger forms to battle enemies or save their partners from danger. \nAn RPG-retelling of the series was released on the PSP as part of Digimons fifteenth anniversary.\nA reboot anime series titled Digimon Adventure: began airing on April 5, 2020.", photo_url="https://digicyclopedia.s3.us-east-2.amazonaws.com/Media/Tv-Shows/Digimon_Adventure.jpg")
+  kizuna = Media(name="Digimon Adventure: Last Evolution Kizuna", type="Movie", bio="Digimon Adventure: Last Evolution Kizuna (デジモンアドベンチャー LAST EVOLUTION 絆 Dejimon Adobenchā LAST EVOLUTION Kizuna?, lit. 'Digimon Adventure LAST EVOLUTION Bond' is a sequel to Digimon Adventure tri. that premiered in Japanese theaters on February 21, 2020. A dubbed/subbed version was released digitally September 29, 2020.On May 28, 2018, the original Director of Digimon Adventure and Digimon Adventure 02, Hiroyuki Kakudo revealed he had quit the staff of Digimon Adventure: Last Evolution Kizuna after something was approved that he claimed was incompatible with what the previous series had established. On September 20, 2020, Producer Yosuke Kinoshita stated that Digimon Adventure: Last Evolution Kizuna is in continuity with Digimon Adventure, Digimon Adventure 02, Digimon Adventure 02: Digimon Hurricane Landing!!/Transcendent Evolution!! The Golden Digimentals, and Digimon Adventure tri.. This included the end of the final episode of 02, set in 2028, where the DigiDestined are adults.", photo_url="https://digicyclopedia.s3.us-east-2.amazonaws.com/Media/Movies/Digimon_Adventure_Last_Evolution_Kizuna_poster.jpg")
+  cyber_sleuth = Media(name="Digimon Story: Cyber Sleuth", type="Game", bio="Digimon Story: Cyber Sleuth (デジモンストーリー　サイバースルゥース Dejimon Sutōrī: Saibā Surwūsu?) is a Digimon video game for the PlayStation Vita. It is part of the Digimon Adventure 15th Anniversary and an entry in the Digimon Story series. At Anime Expo 2015, a localized release was announced for 2016 through retail for the PlayStation 4 and digitally for the PlayStation Vita. At Anime Expo 2019, a port to Nintendo Switch and Windows PC, alongside its sequel, Digimon Story: Cyber Sleuth - Hacker's Memory, was announced for October 18, 2019, as Digimon Story: Cyber Sleuth Complete Edition, though the PC version released a day early. The Japanese version will release one day earlier, only for Nintendo Switch. The localization retains the Japanese audio track and does not feature an English dub. Cyber Sleuth was followed up two years later with Digimon Story: Cyber Sleuth - Hacker's Memory, a midquel, the story taking place at the same time as the original.", photo_url="https://digicyclopedia.s3.us-east-2.amazonaws.com/Media/VideoGames/Digimon_Story_Cyber_Sleuth_NTSC_Cover_Art_b.jpg")
+  ccg2020 = Media(name="Digimon Card Game(2020)", type="CCG", bio="Digimon Card Game (デジモンカードゲーム Dejimon Kādo Gēmu?) is a card game developed by Bandai Namco. It was released in Japan in April 2020 and will release in English in January 2021 though select stores will hold a pre-sale on November 27, 2020. FUN! DigiCa, a YouTube show promoting the Japanese version of the game, started airing on March 23, 2020.", photo_url="https://digicyclopedia.s3.us-east-2.amazonaws.com/Media/CCGs/118734096_105338024640802_8934784446808492192_n.jpg")
+
+  # cyber_sleuth = Media(name="", type="Movie", bio="", photo_url="")
+  # cyber_sleuth = Media(name="", type="Movie", bio="", photo_url="")
+  # cyber_sleuth = Media(name="", type="Movie", bio="", photo_url="")
+  # cyber_sleuth = Media(name="", type="Movie", bio="", photo_url="")
+  # cyber_sleuth = Media(name="", type="Movie", bio="", photo_url="")
+  # cyber_sleuth = Media(name="", type="Movie", bio="", photo_url="")
+  # cyber_sleuth = Media(name="", type="Movie", bio="", photo_url="")
+
+
 
   db.session.add(da1)
+  db.session.add(kizuna)
+  db.session.add(cyber_sleuth)
+  db.session.add(ccg2020)
+  # db.session.add()
 
   db.session.commit()

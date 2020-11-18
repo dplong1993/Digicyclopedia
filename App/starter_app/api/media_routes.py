@@ -16,19 +16,19 @@ def fetchTvShow():
     response = Media.query.filter(Media.type == 'Tv-Show').all()
     return {"data": [thing.to_dict() for thing in response]}
 
-@media_routes.route('/movies/')
+@media_routes.route('/movie/')
 @login_required
 def fetchMovies():
     response = Media.query.filter(Media.type == 'Movie').all()
     return {"data": [thing.to_dict() for thing in response]}
 
-@media_routes.route('/video-games/')
+@media_routes.route('/game/')
 @login_required
 def fetchVideoGames():
-    response = Media.query.filter(Media.type == 'Video-Game').all()
+    response = Media.query.filter(Media.type == 'Game').all()
     return {"data": [thing.to_dict() for thing in response]}
 
-@media_routes.route('/ccgs/')
+@media_routes.route('/ccg/')
 @login_required
 def fetchCCGS():
     response = Media.query.filter(Media.type == 'CCG').all()

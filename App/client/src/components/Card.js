@@ -128,7 +128,8 @@ function Card(props) {
     <CardWrapper>
       <img onClick={handleClick} className="img" src={props.item.photo_url} alt={props.item.name}/>
       <div className="info">
-        <div className="name">{props.item.name}</div>
+        {type === 'media' ? null :
+        <div className="name">{props.item.name}</div>}
         {favorite ? <FontAwesomeIcon onClick={handleFavClick} className="icon" icon={fasHeart} />
         : <FontAwesomeIcon onClick={handleFavClick} className="icon" icon={farHeart} />
         }
