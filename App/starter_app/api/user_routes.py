@@ -73,7 +73,7 @@ def delete_fav_digimon(id):
 @user_routes.route('/', methods=["POST"])
 def createUser():
     username, email, password = request.json.values()
-    user = User(username=username, email=email, password=password)
+    user = User(username=username, email=email, password=password, photo_url="https://digicyclopedia.s3.us-east-2.amazonaws.com/UserImages/default-profile-icon-17.jpg")
     db.session.add(user)
     db.session.commit()
     login_user(user)

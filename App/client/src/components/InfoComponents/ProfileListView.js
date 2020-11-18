@@ -98,6 +98,7 @@ function ProfileListView(props){
       if (currentTab.toLowerCase() === 'digimon')setItems(digimon)
       else setItems(media)
     }
+    // eslint-disable-next-line
   }, [currentTab]);
 
   if(!items){
