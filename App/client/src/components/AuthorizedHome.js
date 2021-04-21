@@ -30,7 +30,7 @@ const AuthorizedHomeWrapper = styled.div`
   .list {
     width: 80%;
     margin: auto;
-    font-size: 20px;
+    font-size: 25px;
   }
 `;
 

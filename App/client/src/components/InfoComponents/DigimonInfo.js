@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import { useParams } from 'react-router';
-import InfoBio from './InfoBio';
-import InfoContainer from './InfoContainer';
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import { useParams } from "react-router";
+import InfoBio from "./InfoBio";
+import InfoContainer from "./InfoContainer";
 
 const DigimonInfoWrapper = styled.div`
   display: flex;
@@ -12,7 +12,7 @@ const DigimonInfoWrapper = styled.div`
   justify-content: space-between;
 `;
 
-function DigimonInfo(props) {
+function DigimonInfo() {
   const [digimon, setDigimon] = useState(null);
   let { name } = useParams();
 
@@ -26,16 +26,16 @@ function DigimonInfo(props) {
     fetchDigimon();
   }, [name]);
 
-  if(!digimon){
+  if (!digimon) {
     return null;
   }
 
   return (
     <DigimonInfoWrapper>
-        <InfoBio item={digimon} />
-        <InfoContainer item={digimon} type="digimon" />
+      <InfoBio item={digimon} />
+      <InfoContainer item={digimon} type="digimon" />
     </DigimonInfoWrapper>
-  )
+  );
 }
 
 export default DigimonInfo;

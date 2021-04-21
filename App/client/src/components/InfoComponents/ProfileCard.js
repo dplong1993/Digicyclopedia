@@ -1,12 +1,13 @@
-import React from 'react';
-import { useHistory } from 'react-router-dom';
-import styled from 'styled-components';
+import React from "react";
+import { useHistory } from "react-router-dom";
+import styled from "styled-components";
 
 const ProfileCardWrapper = styled.div`
   background-color: #fc6701;
   margin: 10px;
-  width: 27%;
-  height 90%;
+  width: 200px;
+  height 300px;
+  box-sizing: border-box;
   border-radius: 30px;
   border: 1px solid #fecc3d;
   display: flex;
@@ -28,9 +29,10 @@ const ProfileCardWrapper = styled.div`
   }
 
   .img {
+    padding-top: 10px;
     align-self: center;
-    width: 80%;
-    height: 90%;
+    width: 150px;
+    height: 250px;
     cursor: pointer;
   }
 `;
@@ -38,26 +40,32 @@ const ProfileCardWrapper = styled.div`
 function ProfileCard(props) {
   let history = useHistory();
 
-  const {item, type} = props;
+  const { item, type } = props;
 
-  if(!item){
-    return null
+  if (!item) {
+    return null;
   }
 
   const handleClick = (e) => {
     e.preventDefault();
     history.push(`/${type}/${item.name}`);
-  }
+  };
 
   return (
     <ProfileCardWrapper>
-      <img onClick={handleClick} className="img" src={props.item.photo_url} alt={props.item.name}/>
+      <img
+        onClick={handleClick}
+        className="img"
+        src={props.item.photo_url}
+        alt={props.item.name}
+      />
       <div className="info">
-        {type === "media" ? null :
-        <div className="name">{props.item.name}</div>}
+        {type === "media" ? null : (
+          <div className="name">{props.item.name}</div>
+        )}
       </div>
     </ProfileCardWrapper>
-  )
+  );
 }
 
 export default ProfileCard;
