@@ -18,6 +18,7 @@ def get_user(id):
     user = User.query.get(id)
     return {"user": user.to_dict()}
 
+
 @user_routes.route('/<int:id>', methods=["POST"])
 @login_required
 def update_user(id):
@@ -34,13 +35,14 @@ def update_user(id):
     except:
         return {"errors": ["Invalid Input"]}, 400
 
+
 @user_routes.route('/<int:id>/fav_digimon')
 @login_required
 def get_fav_digimon(id):
     user = User.query.get(id)
     digimon = [d.name for d in user.fav_digimon]
-    # print("==============", digimon)
     return {"data": digimon}
+
 
 @user_routes.route('/<int:id>/fav_digimon', methods=["POST"])
 @login_required
@@ -56,6 +58,7 @@ def update_fav_digimon(id):
     except:
         pass
 
+
 @user_routes.route('/<int:id>/fav_digimon', methods=["DELETE"])
 @login_required
 def delete_fav_digimon(id):
@@ -70,13 +73,14 @@ def delete_fav_digimon(id):
     except:
         pass
 
+
 @user_routes.route('/<int:id>/fav_media')
 @login_required
 def get_fav_media(id):
     user = User.query.get(id)
     media = [media.name for media in user.fav_media]
-    # print("==============", digimon)
     return {"data": media}
+
 
 @user_routes.route('/<int:id>/fav_media', methods=["POST"])
 @login_required
@@ -92,6 +96,7 @@ def update_fav_media(id):
     except:
         pass
 
+
 @user_routes.route('/<int:id>/fav_media', methods=["DELETE"])
 @login_required
 def delete_fav_media(id):
@@ -106,10 +111,12 @@ def delete_fav_media(id):
     except:
         pass
 
+
 @user_routes.route('/', methods=["POST"])
 def createUser():
     username, email, password = request.json.values()
-    user = User(username=username, email=email, password=password, photo_url="https://digicyclopedia.s3.us-east-2.amazonaws.com/UserImages/default-profile-icon-17.jpg")
+    user = User(username=username, email=email, password=password,
+                photo_url="https://digicyclopedia.s3.us-east-2.amazonaws.com/UserImages/default-profile-icon-17.jpg")
     db.session.add(user)
     db.session.commit()
     login_user(user)
