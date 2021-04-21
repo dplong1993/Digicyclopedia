@@ -1,5 +1,5 @@
 # Digicyclopedia
-This is a solo project where information about different digimon and digimon media can be viewed.
+This is a solo project where information about different digimon and digimon media can be viewed. Live site can be viewed [here](https://digicyclopedia.herokuapp.com/)
 
 # MVP List
 ### User log-in (11/4/20)
@@ -51,3 +51,167 @@ This is a solo project where information about different digimon and digimon med
 * This will be a forum area where users can talk about different ideas or topics.
 * Users will be able to post new topics that other users can respond to.
 * Users will be able to respond to topics created by other users.
+
+## Schema
+
+### Users
+
+| column name | data type | details |
+|---|---|---|
+| id | integer | not null, primary key |
+| email | string | not null, unique |
+| username | string | not null, unique |
+| password_digest | bytea | not null |
+| photo_url | string | not null |
+
+* has_many Digimon
+* has_many Media
+
+### Digimon
+
+| column name | data type | details |
+|---|---|---|
+| id | integer | not null, primary key |
+| name | string | not null |
+| level | string | not null |
+| previous_form | array | |
+| next_form | array | |
+| bio | text | not null |
+| photo_url | string | not null |
+
+* belongs_to User
+
+### Media
+
+| column name | data type | details |
+|---|---|---|
+| id | integer | not null, primary key |
+| name | string | not null |
+| type | string | not null |
+| bio | text | not null |
+| photo_url | string | not null |
+
+* belongs_to User
+
+## Backend Routes
+
+### **_API Endpoints_**
+
+* _POST /login_
+  * Checks the supplied username and password to authenticate the user.
+* _POST /logout_
+  * Logs the user's profile out of the account.
+
+#### users
+
+* _GET api/users/_
+  * Returns all users of the application.
+* _POST api/users/_
+  * Creates a new user.
+* _GET api/users/:id_
+  * Returns a single user with the id that is provided as a parameter.
+* _POST api/users/:id_
+  * Updates the email or username of the user with the id that is provided as a parameter.
+* *GET api/users/:id/fav_digimon*
+  * Returns all the favorited digimon of the user with the id that is provided as a parameter.
+* *POST api/users/:id/fav_digimon*
+  * Adds a new digimon to the list of favorite digimon of the user with the id that is provided as a parameter.
+* *DELETE api/users/:id/fav_digimon*
+  * Removes a digimon from the list of favorite digimon of the user with the id that is provided as a parameter.
+* *GET api/users/:id/fav_media*
+  * Returns all the favorited media of the user with the id that is provided as a parameter.
+* *POST api/users/:id/fav_media*
+  * Adds a new media to the list of favorite media of the user with the id that is provided as a parameter.
+* *DELETE api/users/:id/fav_media*
+  * Removes a media from the list of favorite media of the user with the id that is provided as a parameter.
+
+#### digimon
+
+* _GET api/digimon/_
+  * Returns all digimon of the application.
+* _GET api/digimon/baby_
+  * Returns all digimon of the application with a level of baby.
+* _GET api/digimon/in-training_
+  * Returns all digimon of the application with a level of in-training.
+* _GET api/digimon/rookie_
+  * Returns all digimon of the application with a level of rookie.
+* _GET api/digimon/champion_
+  * Returns all digimon of the application with a level of champion.
+* _GET api/digimon/ultimate_
+  * Returns all digimon of the application with a level of ultimate.
+* _GET api/digimon/mega_
+  * Returns all digimon of the application with a level of mega.
+* _GET api/digimon/:name_
+  * Returns the digimon with the name that is provided as a parameter.
+
+#### media
+
+* _GET api/media_
+  * Returns all media of the application.
+* _GET api/media/tv-show_
+  * Returns all media of the application with the type tv-show.
+* _GET api/media/movie_
+  * Returns all media of the application with the type movie.
+* _GET api/media/game_
+  * Returns all media of the application with the type game.
+* _GET api/media/ccg_
+  * Returns all media of the application with the type ccg.
+* _GET api/media/:name_
+  * Returns the media with the name that is provided as a parameter.
+
+
+## Frontend Routes
+
+The components will be organized as such:
+
+* Root
+  * Provider
+    * App
+          * NavBar
+          - Main
+          - Footer
+
+The following routes will render in our App between the NavBar and Footer.
+
+* /
+  * This homepage will be accessible to anyone that visits the site.
+  * Shows the Digimon Logo
+  * Has a blurb about the site
+  * Has a two buttons that will take you to a login page and signup page respectively.
+
+* /
+  * This homepage that will be accessible to anyone that has signed into the site.
+  * This page has a list of the different things you can do on the site and instructions for how to accomplish each task.
+
+* /login
+  * This page contains a form allowing the user to enter their username and password to be authenticated.
+  * There are buttons to login, login as a demo user, and to signup. The signup button will take the user to the signup page.
+
+* /signup
+  * This page will allow a user to create a new account with the application.
+  * This page contains a form that allows users to enter email, username, and password for their accounts.
+  * This page contains a signup button and a login button that will take the user to the login page.
+
+* /digimon
+  * This page contains a gallery view of different digimon with a heart that gives users the ability to add that digimon to their favorite list.
+  * Each digimon picture is clickable and will take users to a digimon info page.
+  * The gallery is set up with several filter methods allowing users to view digimon that belong to certain groups.
+  * The gallery also contains a search bar that will allow users to search for a particular digimon.
+
+* /digimon/DigimonName
+  * This page will contain information about the specific digimon with the name that is in the url.
+  * This page also contains links for the next and previous forms of digimon that have a next or previous form.
+
+* /media
+  * This page will render a gallery view of different media with a heart that gives users the ability to add each media to their favorite list.
+  * This page has similar filter and search feature as the digimon page.
+
+* /media/MediaName
+  * This page will contain information about the specific media with the name that is in the url.
+
+* /profile
+  * This page will render the user profile for the currently logged-in user.
+  * There is a user photo that appears which corresponds to a default user image that is stored in the database.
+  * There is a section that shows the user's username and email and allows the user to update this information for accounts other than the demo user account.
+  * There is a gallery view of the user's favorited digimon and media with filter options to show only digimon or only media.
+  * There is a search feature built into the gallery view allowing users to search for a particular digimon or media.
