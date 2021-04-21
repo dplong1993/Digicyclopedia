@@ -1,5 +1,5 @@
 # Digicyclopedia
-This is a solo project where information about different digimon and digimon media can be viewed.  This application was built using React, Flask, and SQLAlchemy. Front-end state was managed by using React Context and prop threading when data only needed to be passed to a child component that was one level below the parent component.Live site can be viewed [here](https://digicyclopedia.herokuapp.com/)
+This is a solo project where information about different digimon and digimon media can be viewed.  This application was built using React, Flask, and SQLAlchemy. Front-end state was managed by using React Context and prop threading when data only needed to be passed to a child component that was one level below the parent component. Live site can be viewed [here](https://digicyclopedia.herokuapp.com/)
 
 # MVP List
 ### User log-in (11/4/20)
